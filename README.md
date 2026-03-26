@@ -93,6 +93,10 @@ The system is designed with a layered architecture including:
 * Additional module documentation can be found in `/docs`
 * This project is designed as a real-world cloud migration scenario
 
+## 🏗️ Architecture
+
+![Architecture Diagram](Architecture.png)
+
 ---
 
 ## 👤 Author
