@@ -100,4 +100,76 @@ output "ssm_profile_name" {
   value = aws_iam_instance_profile.ssm_profile.name
 }
 
+# modules/compute/main.tf
+
+# 1. Nginx/React Web Server (Public Subnet)
+resource "aws_instance" "web_tier" {
+  ami           = "ami-0c55b159cbfafe1f0" # Amazon Linux 2 (Verify AMI for your region)
+  instance_type = "t3.micro"
+  subnet_id     = var.public_subnet_id
+  
+  # Attach the Security Group and IAM Profile we created earlier
+  vpc_security_group_ids = [var.web_sg_id]
+  iam_instance_profile   = var.ssm_profile_name
+
+  tags = {
+    Name = "Migration-Web-Tier-Nginx"
+  }
+}
+
+# 2. RDS Multi-AZ Database (Private Subnet)
+resource "aws_db_subnet_group" "db_subnets" {
+  name       = "migration-db-subnet-group"
+  subnet_ids = var.private_subnet_ids
+
+  tags = { Name = "Migration-DB-Subnets" }
+}
+
+resource "aws_db_instance" "rds_primary" {
+  allocated_storage      = 20
+  engine                 = "postgres"
+  engine_version         = "15.3"
+  instance_class         = "db.t3.micro"
+  multi_az               = true # High Availability as per diagram
+  db_subnet_group_name   = aws_db_subnet_group.db_subnets.name
+  vpc_security_group_ids = [var.db_sg_id]
+  
+  db_name                = "migrationdb"
+  username               = var.db_username
+  password               = var.db_password
+  skip_final_snapshot    = true
+
+  tags = { Name = "Migration-RDS-MultiAZ" }
+}
+
+variable "public_subnet_id" {}
+variable "private_subnet_ids" { type = list(string) }
+variable "web_sg_id" {}
+variable "db_sg_id" {}
+variable "ssm_profile_name" {}
+variable "db_username" {}
+variable "db_password" {}
+
+# terraform/main.tf
+
+module "networking" {
+  source = "./modules/networking"
+}
+
+module "security" {
+  source = "./modules/security"
+  vpc_id = module.networking.vpc_id
+}
+
+module "compute" {
+  source             = "./modules/compute"
+  public_subnet_id   = module.networking.public_subnet_id
+  private_subnet_ids = module.networking.private_subnet_ids
+  web_sg_id          = module.security.web_sg_id
+  db_sg_id           = module.security.app_sg_id # DB only talks to App SG
+  ssm_profile_name   = module.security.ssm_profile_name
+  db_username        = var.db_username
+  db_password        = var.db_password
+}
+
 
