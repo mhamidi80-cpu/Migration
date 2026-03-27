@@ -1,0 +1,23 @@
+# Local .terraform folder (contains downloaded providers)
+.terraform/
+
+# Distributed lock files
+.terraform.lock.hcl
+
+# Local state files (These contain your secrets in plain text!)
+*.tfstate
+*.tfstate.backup
+
+# Your private variable file (Crucial for m.hamidi/passwords)
+terraform.tfvars
+terraform.tfvars.json
+*.auto.tfvars
+*.auto.tfvars.json
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
