@@ -119,6 +119,23 @@ This project follows industry-standard security protocols for Infrastructure as 
 | **State Storage** | Local (Git-Ignored)       | S3 Remote Backend        |
 | **Cost Profile** | Minimal / Free Tier       | Production Grade         |
 
+## 🛠️ Prerequisites
+
+Before deploying, ensure you have the following installed:
+* **Terraform** (v1.5.0+)
+* **AWS CLI** (Configured with `aws configure`)
+* **An AWS Account** (Free Tier recommended for `dev`)
+
+## 🚀 How to Deploy (Dev)
+
+1. **Navigate to the dev environment:**
+   `cd terraform/environments/dev`
+2. **Setup your variables:**
+   `cp terraform.tfvars.example terraform.tfvars` (Then edit with your specific values)
+3. **Initialize & Apply:**
+   `terraform init`
+   `terraform apply`
+
 ---
 
 ## 👤 Author
