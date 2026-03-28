@@ -108,6 +108,17 @@ This project follows industry-standard security protocols for Infrastructure as 
 
 
 (docs: update root and terraform readmes with security and architecture details)
+
+### 📊 Environment Comparison
+
+| Feature            | Dev Environment (Sandbox) | Prod Environment (Scale) |
+| :----------------- | :------------------------ | :----------------------- |
+| **Instance Type** | `t3.micro` (Free Tier)    | `t3.medium`              |
+| **Database (RDS)** | Single Instance           | Multi-AZ (High Avail.)   |
+| **Auto Scaling** | Min: 1 / Max: 2           | Min: 2 / Max: 6          |
+| **State Storage** | Local (Git-Ignored)       | S3 Remote Backend        |
+| **Cost Profile** | Minimal / Free Tier       | Production Grade         |
+
 ---
 
 ## 👤 Author
