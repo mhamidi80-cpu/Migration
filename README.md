@@ -97,6 +97,14 @@ The system is designed with a layered architecture including:
 
 ![Architecture Diagram](Architecture.png)
 
+## 🛡️ Security & Infrastructure Best Practices
+
+This project follows industry-standard security protocols for Infrastructure as Code (IaC):
+
+* **Secret Management**: No sensitive data (AWS keys, DB passwords, etc.) is stored in this repository. All sensitive variables are handled via `terraform.tfvars` files which are explicitly ignored by Git. 
+* **Variable Templates**: A `terraform.tfvars.example` is provided for each environment to demonstrate the required inputs without exposing actual values.
+* **State Management**: While configured for local demonstration, the architecture is designed to support **Remote State** (S3 + DynamoDB) to ensure state locking and team collaboration.
+* **Modular Design**: Resources are broken down into reusable modules (`vpc`, `ec2`, `security-groups`) to ensure the DRY (Don't Repeat Yourself) principle.
 ---
 
 ## 👤 Author
