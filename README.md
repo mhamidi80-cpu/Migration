@@ -56,11 +56,26 @@ The system is designed with a layered architecture including:
 
 ```
 .
-├── README.md
-├── architecture.drawio
-├── config.docx
-├── hybrid-cloud-github.zip
-└── docs/ (optional - additional modules documentation)
+├── architecture.drawio        # Editable source for architecture
+├── README.md                  # Main project documentation
+├── scripts/                   # Automation & helper scripts
+├── docs/
+│   └── config.docx            # Technical specifications
+├── images/
+│   └── architecture.png       # Architecture visualization
+└── terraform/
+    ├── README.md              # IaC technical documentation
+    ├── global/
+    │   └── providers.tf       # AWS provider & versioning
+    ├── modules/               # Reusable Infrastructure Components
+    │   ├── vpc/               # Network isolation
+    │   ├── ec2/               # Compute & Auto Scaling
+    │   ├── alb/               # Load balancing
+    │   ├── rds/               # Managed Database
+    │   └── security-groups/   # Traffic & Firewall rules
+    └── environments/          # Logic for environment separation
+        ├── dev/               # Staging/Dev environment
+        └── prod/              # Production environment
 ```
 
 ---
