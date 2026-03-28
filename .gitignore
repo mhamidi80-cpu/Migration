@@ -18,6 +18,46 @@ terraform.tfvars.json
 crash.log
 crash.*.log
 
+
+# ====================================================================
+# TERRAFORM RULES
+# ====================================================================
+# Ignore all .terraform directories (where providers and modules are downloaded)
+# The ** ensures it catches it in /dev, /prod, and /modules
+**/.terraform/
+
+# Ignore local state files (since we want to use S3 or keep state off Git)
+*.tfstate
+*.tfstate.*
+
+# Ignore all variable files containing actual secrets/sensitive data
+# This will ignore your 'terraform.tfvars' but NOT 'terraform.tfvars.example'
+**/*.tfvars
+**/*.tfvars.json
+
+# Ignore crash logs
+crash.log
+crash.*.log
+
+# ====================================================================
+# IDE & SYSTEM RULES
+# ====================================================================
+.vscode/
+.idea/
+
+# ====================================================================
+# DOCUMENTATION & TEMP FILES
+# ====================================================================
+# Ignores temporary Microsoft Word files if you're editing config.docx
+~$*.docx
+*.tmp
+
+# ====================================================================
+# AWS & CLOUD SECRETS (Safety Net)
+# ====================================================================
+.aws/
+credentials
+*.pem
 # Ignore OS-specific files
 .DS_Store
 Thumbs.db
