@@ -1,6 +1,6 @@
 # Hybrid Cloud Migration Project 🚀
 
-![Hybrid Cloud Architecture](images/architecture.jpg)
+![Hybrid Cloud Architecture](images/architecture.png)
 
 ## 📌 Overview
 ## 📌 Overview
