@@ -3,7 +3,6 @@
 ![Hybrid Cloud Architecture](images/architecture.png)
 
 ## 📌 Overview
-## 📌 Overview
 
 This project demonstrates the design and implementation of a **hybrid cloud architecture** using AWS services.
 It focuses on scalability, high availability, and secure infrastructure deployment using modular components.
