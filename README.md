@@ -1,5 +1,8 @@
-# Hybrid Cloud Migration Project
+# Hybrid Cloud Migration Project 🚀
 
+![Hybrid Cloud Architecture](images/architecture.jpg)
+
+## 📌 Overview
 ## 📌 Overview
 
 This project demonstrates the design and implementation of a **hybrid cloud architecture** using AWS services.
@@ -92,10 +95,6 @@ The system is designed with a layered architecture including:
 
 * Additional module documentation can be found in `/docs`
 * This project is designed as a real-world cloud migration scenario
-
-## 🏗️ Architecture
-
-![Architecture Diagram](Architecture.png)
 
 ## 🛡️ Security & Infrastructure Best Practices
 
